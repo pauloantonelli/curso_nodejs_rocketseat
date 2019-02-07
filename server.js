@@ -11,18 +11,8 @@ mongoose.connect('mongodb://localhost:27017/nodeapi', { useNewUrlParser: true })
 //registrando modelo na aplicacao
 requireDir('./src/models');
 
-//criando primeiro produto no banco
-const product = mongoose.model('Product');
-
-//primeira rota criada
-app.get('/', (req, res) => {
-    product.create({
-        title: 'Nativescript',
-        description: 'Build native apps with Angular 2+',
-        url: 'https://www.nativescript.org/',
-    })
-    res.send('Produto Requistrado com sucesso!');
-});
+//rotas
+app.use('/api', require('./src/routes'));
 
 //porta externa da aplicacao
 app.listen(3001);
