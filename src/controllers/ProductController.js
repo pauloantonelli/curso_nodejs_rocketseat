@@ -5,8 +5,9 @@ const product = mongoose.model('Product');
 module.exports = {
     // exporta tudo oque estiver de produto na base de dados
     async index(req, res) {
-        const { page = 1 } = req.query;
-        const products = await product.paginate({}, { page: page, limit: 10 });//
+        //a desestruturação de variavel esta auxiliando para ela ter um valor padrao
+        const { page = 1 } = req.query; //a query é o parametro vindo via url
+        const products = await product.paginate({}, { page: page, limit: 10 }); // o 1* parametro é para as condicionais de busca ao estilo sql, o 2* é a pagina desejada vinda da query e o limite de resultados por pagina
 
         return res.json(products); // retorna os dados da base de dados em formato json
     },
